@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="images/vriksh-logo.png">
+<title>VRIKSH – Timber Legality Verification, India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--alt:#f5f5f7;--ink:#1d1d1f;--muted:#6e6e73;--line:#d2d2d7;--nav:rgba(255,255,255,.78);--cta:#000;--cta-ink:#fff;--btn:#000;--btn-ink:#fff;
+color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000;--alt:#161617;--ink:#f5f5f7;--muted:#a1a1a6;--line:#3a3a3c;--nav:rgba(0,0,0,.72);--cta:#1c1c1e;--btn:#f5f5f7;--btn-ink:#000;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000;--alt:#161617;--ink:#f5f5f7;--muted:#a1a1a6;--line:#3a3a3c;--nav:rgba(0,0,0,.72);--cta:#1c1c1e;--btn:#f5f5f7;--btn-ink:#000;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(60px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.47 -apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Inter","Helvetica Neue",Arial,sans-serif;letter-spacing:-.011em;-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0 0 .4em;font-weight:700;letter-spacing:-.03em;line-height:1.08}
+h2{font-size:clamp(2rem,5.2vw,3.5rem)}h3{font-size:1.3rem;letter-spacing:-.02em;line-height:1.2}
+p{margin:0 0 1em;max-width:62ch}
+a{color:inherit}
+:focus-visible{outline:3px solid #0071e3;outline-offset:3px;border-radius:8px}
+.wrap{width:min(1080px,90%);margin-inline:auto}
+section{padding:80px 0}
+.lead{font-size:clamp(1.15rem,2vw,1.4rem);color:var(--muted);line-height:1.4}
+.center{text-align:center}.center p{margin-inline:auto}
+/* nav */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);z-index:60}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:52px;gap:16px}
+.brand{font-weight:700;font-size:1.1rem;letter-spacing:.02em;text-decoration:none;display:flex;gap:9px;align-items:center}
+.brand svg{width:20px;height:20px}
+nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+nav a{text-decoration:none;font-size:.8rem;color:var(--muted);transition:color .2s}
+nav a:hover{color:var(--ink)}
+.menu-btn{display:none;background:none;border:0;color:var(--ink);font:inherit;font-size:.9rem;cursor:pointer;padding:8px}
+/* buttons */
+.btn{display:inline-block;padding:12px 24px;border-radius:980px;font-size:1rem;font-weight:500;text-decoration:none;border:1px solid transparent;transition:transform .2s,opacity .2s,background .2s,color .2s;cursor:pointer;background:var(--btn);color:var(--btn-ink)}
+.btn:hover{opacity:.82}.btn:active{transform:scale(.97)}
+.btn.sm{padding:6px 14px;font-size:.8rem}
+.btn.w{background:#fff;color:#000}
+.btn.o{background:transparent;color:inherit;border-color:currentColor}
+.btn.o:hover{opacity:1;background:var(--ink);color:var(--bg)}
+.dark .btn.o:hover{background:#fff;color:#000}
+.link{text-decoration:none;font-weight:500;display:inline-block}
+.link::after{content:" \203A";transition:margin .2s}.link:hover::after{margin-left:4px}
+.row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}.center .row{justify-content:center}
+/* hero */
+.dark{background:#000;color:#f5f5f7}
+.hero{position:relative;padding:0;min-height:clamp(440px,64vh,540px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;isolation:isolate}
+.forest{position:absolute;inset:0;width:100%;height:100%;z-index:-2;opacity:0;transition:opacity 1.8s ease}
+.forest.on{opacity:1}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 62% 72% at 50% 52%,rgba(0,0,0,.74),rgba(0,0,0,.08) 85%),linear-gradient(180deg,rgba(0,0,0,.4),rgba(0,0,0,0) 35%,#000 100%)}
+.hero>.wrap{padding-top:88px}
+.hero h1{font-size:clamp(2.3rem,6.4vw,4.6rem);letter-spacing:-.04em;margin-bottom:.3em;line-height:1.04}
+.hero .lead{color:#d2d2d7;max-width:40ch;margin:0 auto 24px}
+.rings{width:min(560px,86vw);margin:72px auto 0;display:block}
+.ring{fill:none;stroke:#fff;stroke-width:1.5;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw 2.6s cubic-bezier(.3,.7,.2,1) forwards;animation-delay:var(--d)}
+@keyframes draw{to{stroke-dashoffset:0}}
+.feat{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(255,255,255,.25);margin-top:44px}
+.feat div{padding:18px 20px 24px 0}
+.feat b{display:block;font-size:1.05rem;margin-bottom:4px}
+.feat span{font-size:.9rem;color:#c7c7cc}
+/* tiles */
+.grid{display:grid;gap:16px}
+.g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.tile{background:var(--alt);border-radius:22px;padding:28px;text-decoration:none;display:flex;flex-direction:column;gap:6px;min-height:150px;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+a.tile:hover{transform:scale(1.025)}
+.tile h3{margin:0}.tile p{color:var(--muted);font-size:.95rem;margin:0}
+.tile .ic{width:34px;height:34px;margin-bottom:auto}
+.tile .ic svg{width:100%;height:100%;stroke:var(--ink);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.tile.bg{background:var(--bg);border:1px solid var(--line)}
+.new{font-size:.68rem;border:1px solid currentColor;border-radius:6px;padding:1px 6px;margin-left:8px;vertical-align:middle;font-weight:600}
+.quick{padding:40px 0 0}
+/* split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.facts{list-style:none;padding:0;margin:0}
+.facts li{padding:20px 0;border-top:1px solid var(--line);color:var(--muted)}
+.facts li:last-child{border-bottom:1px solid var(--line)}
+.facts b{color:var(--ink);display:block;font-size:1.1rem;letter-spacing:-.02em}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:36px;counter-reset:s}
+.step{border-top:2px solid var(--ink);padding-top:20px}
+.step::before{counter-increment:s;content:counter(s);display:block;font-size:3.2rem;font-weight:700;letter-spacing:-.04em;line-height:1;margin-bottom:16px}
+.step h3{font-size:1.1rem}.step p{color:var(--muted);font-size:.95rem}
+/* segmented tabs + docs */
+.seg{display:inline-flex;background:var(--alt);border-radius:10px;padding:3px;margin:28px 0 24px}
+.tab{border:0;background:none;color:var(--muted);padding:8px 18px;border-radius:8px;font:inherit;font-size:.9rem;font-weight:500;cursor:pointer;transition:all .2s}
+.tab[aria-selected="true"]{background:var(--bg);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.18)}
+.panel[hidden]{display:none}
+.doc{display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-top:1px solid var(--line);text-decoration:none;transition:padding .25s}
+.doc:last-child{border-bottom:1px solid var(--line)}
+.doc:hover{padding-left:10px}
+.doc span:last-child{color:var(--muted);font-size:.85rem;white-space:nowrap}
+.alt{background:var(--alt)}
+.alt .tile{background:var(--bg)}
+.alt .seg{background:var(--bg)}.alt .tab[aria-selected="true"]{background:var(--alt)}
+.sbox{background:var(--bg);border:1px solid var(--line);border-radius:22px;padding:26px}
+.alt .sbox .seg{background:var(--alt);margin:0 0 20px}.alt .sbox .tab[aria-selected="true"]{background:var(--bg)}
+.sbox label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:14px}
+.sbox input{display:block;width:100%;margin-top:6px;padding:13px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;font-size:1rem;background:var(--bg);color:var(--ink);transition:box-shadow .2s,border-color .2s}
+.sbox input:focus{outline:none;border-color:#0071e3;box-shadow:0 0 0 4px rgba(0,113,227,.22)}
+.sbox fieldset{border:0;padding:0;margin:0 0 8px}.sbox legend{font-weight:600;margin-bottom:10px;padding:0}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+#res{margin-top:22px}
+#res .note{font-size:.82rem;color:var(--muted);margin:14px 0 0}
+.hit{padding:16px 0;border-top:1px solid var(--line)}
+.hit b{display:block;font-size:1.05rem;letter-spacing:-.02em}
+.hit .code{display:inline-block;font-size:.78rem;font-weight:600;border:1px solid var(--ink);border-radius:6px;padding:1px 7px;margin-bottom:6px}
+.hit dl{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;margin:8px 0 0;font-size:.9rem}
+.hit dt{color:var(--muted)}.hit dd{margin:0}
+@media (max-width:560px){.fg{grid-template-columns:1fr}}
+/* events */
+.event{background:var(--alt);border-radius:22px;padding:32px}
+.event small{color:var(--muted);font-weight:500;display:block;margin-bottom:10px}
+.event p{font-size:1.15rem;line-height:1.35;letter-spacing:-.015em;margin:0;color:var(--ink)}
+/* cta */
+.cta{background:var(--cta);color:#f5f5f7;border-radius:28px;padding:68px 32px}
+.cta .lead{color:#a1a1a6;margin-bottom:32px}
+footer{border-top:1px solid var(--line);padding:32px 0 40px;font-size:.78rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+footer a{text-decoration:none;margin-left:20px}footer a:hover{text-decoration:underline}
+.top{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:44px;height:44px;border-radius:50%;background:var(--nav);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);color:var(--ink);border:1px solid var(--line);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s;z-index:40;font-size:1.1rem}
+.top.show{opacity:1;pointer-events:auto}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (max-width:900px){
+.split{grid-template-columns:1fr;gap:32px}.g4,.steps,.feat{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(2,1fr)}
+nav ul{position:absolute;top:52px;left:0;right:0;background:var(--bg);flex-direction:column;gap:0;padding:8px 5%;display:none;border-bottom:1px solid var(--line)}
+nav ul.open{display:flex}nav li a{display:block;padding:14px 0;font-size:1rem;color:var(--ink);border-bottom:1px solid var(--line)}
+.menu-btn{display:block}section{padding:56px 0}.hero{min-height:480px}}
+@media (max-width:560px){.g4,.g3,.g2,.steps,.feat{grid-template-columns:1fr}.cta{padding:64px 24px}.nav .btn.sm{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ring{animation:none;stroke-dashoffset:0}.rv{opacity:1;transform:none;transition:none}*{transition:none!important}}
+.brand img{width:30px;height:30px;border-radius:50%;background:#fff;display:block}
+.epch{height:58px;width:auto;background:#fff;border-radius:10px;padding:6px 10px;display:block}
+.fl{display:flex;gap:16px;align-items:center}.fl span{line-height:1.4}
+.hero{min-height:0;justify-content:flex-start}
+.hero>.wrap{padding:56px 0 40px}
+.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);margin:0}
+.hero .lead{margin:0 0 18px;max-width:36ch}
+.hhead{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:end;margin-bottom:32px}
+.ph{position:relative;aspect-ratio:2.6/1;border-radius:22px;overflow:hidden;background:#0b0b0c;isolation:isolate}
+.ph::before{content:"";position:absolute;inset:-30px;background:var(--u) center/cover;filter:blur(28px) brightness(.5);z-index:-1}
+.ph img{width:100%;height:100%;object-fit:contain;display:block}
+.slides{display:grid}
+.sl{grid-area:1/1;margin:0;opacity:0;visibility:hidden;transition:opacity .9s ease,visibility .9s}
+.sl.on{opacity:1;visibility:visible}
+.sl figcaption{margin-top:16px;font-size:.98rem;line-height:1.4;color:#d2d2d7;max-width:84ch}
+.ctl{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+.dots{display:flex;gap:8px;align-items:center}.dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:#636366;cursor:pointer;transition:all .3s}.dots button[aria-current="true"]{background:#fff;width:26px;border-radius:5px}
+.arrows{display:flex;gap:10px}.arrows button{width:40px;height:40px;border-radius:50%;border:1px solid #48484a;background:rgba(255,255,255,.08);color:#fff;font-size:1.3rem;line-height:1;cursor:pointer;transition:background .2s}.arrows button:hover{background:rgba(255,255,255,.22)}
+.car:focus-visible{outline-offset:6px}
+@media (max-width:900px){.hhead{grid-template-columns:1fr;gap:16px;margin-bottom:24px}.ph{aspect-ratio:16/9;border-radius:16px}}
+@media (prefers-reduced-motion:reduce){.sl{transition:none}}
+
+section{padding:60px 0}.quick{padding:28px 0 0}
+h1,h2{text-wrap:balance}p,.lead,figcaption{text-wrap:pretty}
+h2{font-size:clamp(1.9rem,4.2vw,3rem);letter-spacing:-.035em;margin-bottom:.35em}
+.lead{max-width:46ch}
+.shead{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end;margin-bottom:28px}
+.shead h2,.shead .lead,.shead p{margin:0}.shead .lead{padding-bottom:.35em}
+.tile{min-height:0;padding:24px;gap:6px}.tile .ic{margin-bottom:12px}
+.tile h3{font-size:1.2rem}
+.quick .tile{min-height:0}
+.aud .tile{gap:8px}.aud small{font-size:.8rem;font-weight:600;color:var(--muted)}
+.aud .links{margin-top:auto;padding-top:14px;display:flex;flex-wrap:wrap;gap:6px 22px}.aud .link{font-size:.95rem}
+.split{gap:56px;align-items:start}
+.split>.rv>h2:first-child,.split>div>h2:first-child{margin-top:0}
+.facts li{padding:16px 0}.facts b{margin-bottom:2px}
+.steps{margin-top:28px;gap:24px}.step{padding-top:16px}.step::before{font-size:2.6rem;margin-bottom:10px}
+.doc{padding:14px 0}.seg{margin:18px 0 12px}
+.cta{padding:56px 32px}.cta .lead{margin:0 auto 24px}
+footer{padding:28px 0}
+@media (max-width:900px){section{padding:44px 0}.shead{grid-template-columns:1fr;gap:10px;margin-bottom:22px}}
+
+.lhero{position:relative;background:linear-gradient(180deg,var(--bg) 0,var(--alt) 100%);overflow:hidden;padding:52px 0 60px;border-bottom:1px solid var(--line)}
+.orbit{position:absolute;right:-170px;top:-190px;width:640px;height:640px;pointer-events:none}
+.orbit circle{fill:none;stroke:var(--line);stroke-width:1.3;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw 3.2s cubic-bezier(.3,.7,.2,1) forwards;animation-delay:var(--d)}
+.lh{position:relative;display:grid;grid-template-columns:.8fr 1.2fr;gap:52px;align-items:center}
+.pill{display:inline-flex;gap:9px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:980px;padding:5px 15px 5px 6px;font-size:.82rem;font-weight:500;color:var(--muted);margin-bottom:20px}
+.pill img{width:24px;height:24px;border-radius:50%;background:#fff;display:block}
+.lhero h1{font-size:clamp(2.4rem,4.6vw,3.9rem);letter-spacing:-.04em;line-height:1.03;margin:0 0 .35em;text-wrap:balance}
+.lhero .lead{margin:0 0 24px;max-width:34ch}
+.ticks{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:10px;font-size:.93rem;font-weight:500}
+.ticks li{position:relative;padding-left:30px}
+.ticks li::before{content:"";position:absolute;left:0;top:2px;width:18px;height:18px;border-radius:50%;background:var(--ink)}
+.ticks li::after{content:"";position:absolute;left:6px;top:5px;width:5px;height:9px;border:solid var(--bg);border-width:0 2px 2px 0;transform:rotate(40deg)}
+.view{position:relative;aspect-ratio:2/1;border-radius:28px;overflow:hidden;background:#d8d8dc;box-shadow:0 36px 60px -28px rgba(0,0,0,.45),0 0 0 1px var(--line);isolation:isolate}
+.fr{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;isolation:isolate}.fr.on{opacity:1}
+.fr::before{content:"";position:absolute;inset:-30px;background:var(--u) center/cover;filter:blur(26px) saturate(1.15) brightness(.88);z-index:-1}
+.fr img{width:100%;height:100%;object-fit:contain;display:block}
+.count{position:absolute;top:14px;left:14px;padding:5px 12px;border-radius:980px;font-size:.78rem;font-weight:600;background:rgba(255,255,255,.72);color:#1d1d1f;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.nv{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.75);color:#1d1d1f;font-size:1.5rem;line-height:1;cursor:pointer;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);opacity:0;transition:opacity .25s,background .2s}
+.nv:hover{background:#fff}.prv{left:12px}.nxt{right:12px}.view:hover .nv,.nv:focus-visible{opacity:1}
+@media (hover:none){.nv{opacity:1}}
+.caps{display:grid;margin-top:14px}
+.cp{grid-area:1/1;margin:0;max-width:none;opacity:0;visibility:hidden;transition:opacity .6s,visibility .6s;font-size:.95rem;line-height:1.45;color:var(--ink)}.cp.on{opacity:1;visibility:visible}
+.thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}
+.th{position:relative;border:0;padding:0;border-radius:12px;overflow:hidden;aspect-ratio:16/9;cursor:pointer;opacity:.5;transition:opacity .3s,transform .3s;background:#cfcfd4}
+.th:hover{opacity:.85}.th[aria-current="true"]{opacity:1}
+.th img{width:100%;height:100%;object-fit:cover;display:block}
+.th i{position:absolute;left:0;bottom:0;height:3px;width:0;background:#fff}
+.th[aria-current="true"] i{animation:prog 6.5s linear forwards}
+@keyframes prog{to{width:100%}}
+@media (hover:hover){.car:hover .th i{animation-play-state:paused}}
+.car:has(:focus-visible) .th i{animation-play-state:paused}
+.car:focus-visible{outline-offset:8px}
+@media (max-width:900px){.lh{grid-template-columns:1fr;gap:32px}.lhero{padding:36px 0 44px}.orbit{width:420px;height:420px;right:-140px;top:-140px}.view{border-radius:20px}.lhero .lead{max-width:44ch}}
+@media (prefers-reduced-motion:reduce){.orbit circle{animation:none;stroke-dashoffset:0}.th[aria-current="true"] i{animation:none;width:100%}.fr,.cp{transition:none}}
+.quick{padding:32px 0 40px}
+.qgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.qbtn{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;background:var(--bg);border:1px solid var(--line);text-decoration:none;color:var(--ink);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,border-color .25s}
+.qbtn:hover{transform:translateY(-2px);border-color:var(--ink);box-shadow:0 10px 24px -12px rgba(0,0,0,.35)}
+.qi{flex:none;width:40px;height:40px;border-radius:50%;background:var(--alt);display:grid;place-items:center}
+.qi svg{width:20px;height:20px;stroke:var(--ink);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.qt{flex:1;font-weight:600;font-size:.98rem;letter-spacing:-.015em;line-height:1.2}
+.qt em{font-style:normal;font-size:.66rem;font-weight:600;border:1px solid currentColor;border-radius:6px;padding:0 5px;margin-left:7px;vertical-align:middle}
+.qc{flex:none;color:var(--muted);font-size:1.4rem;line-height:1;transition:transform .25s}.qbtn:hover .qc{transform:translateX(3px);color:var(--ink)}
+@media (max-width:900px){.qgrid{grid-template-columns:repeat(2,1fr)}.quick{padding:24px 0 32px}}
+@media (max-width:480px){.qgrid{grid-template-columns:1fr}}
+.brand img{border-radius:8px;padding:2px}
+.fhero{position:relative;isolation:isolate;color:#fff;overflow:hidden;padding:56px 0 64px;background:#0c3d2a}
+.fbg{position:absolute;inset:-3%;z-index:-2;background-image:url(images/forest-hero.jpg),radial-gradient(120% 90% at 72% 0%,rgba(238,242,190,.55),rgba(238,242,190,0) 55%),linear-gradient(165deg,#14573b 0%,#0f4630 48%,#082a1d 100%);background-size:cover;background-position:center;animation:kb 42s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.07) translate(-1%,-1%)}}
+.fhero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(3,28,17,.82) 0,rgba(3,28,17,.5) 48%,rgba(3,28,17,.18) 100%),linear-gradient(180deg,rgba(3,28,17,.25),rgba(3,28,17,0) 40%,rgba(3,28,17,.4))}
+.fh{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:center}
+.tag2{display:inline-flex;gap:10px;align-items:center;padding:5px 16px 5px 5px;border-radius:12px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);font-size:.82rem;font-weight:500;margin-bottom:20px}
+.tag2 img{width:28px;height:28px;border-radius:8px;background:#fff;padding:2px;display:block}
+.fhero h1{font-size:clamp(2.4rem,4.6vw,3.9rem);letter-spacing:-.04em;line-height:1.03;margin:0 0 .35em;text-wrap:balance;color:#fff}
+.fhero .lead{color:rgba(255,255,255,.82);margin:0 0 24px;max-width:34ch}
+.fhero .btn.w{background:#fff;color:#0c3d2a}.fhero .btn.g{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.4);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.fhero .btn.g:hover{background:rgba(255,255,255,.28);opacity:1}
+.ticks2{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:10px;font-size:.93rem;font-weight:500;color:rgba(255,255,255,.92)}
+.ticks2 li{display:flex;gap:12px;align-items:center}.ticks2 li::before{content:"";width:18px;height:2px;background:#b9e6a2;flex:none}
+.glass{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);border-radius:24px;padding:12px;-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);box-shadow:0 40px 80px -30px rgba(0,0,0,.55)}
+.fhero .view{border-radius:14px;box-shadow:none}
+.fhero .count{border-radius:8px;background:rgba(255,255,255,.78)}
+.fhero .nv{border-radius:10px}
+.fhero .cp{color:rgba(255,255,255,.95);padding:0 6px}
+.fhero .caps{margin-top:14px}
+.fhero .th{border-radius:8px;opacity:.6}.fhero .th[aria-current="true"]{opacity:1;box-shadow:0 0 0 2px #fff}
+.fhero .thumbs{margin-top:12px}
+@media (max-width:900px){.fh{grid-template-columns:1fr;gap:30px}.fhero{padding:36px 0 44px}.fhero::after{background:linear-gradient(180deg,rgba(3,28,17,.72),rgba(3,28,17,.4))}.glass{border-radius:18px;padding:10px}}
+@media (prefers-reduced-motion:reduce){.fbg{animation:none}}
+.fhero .view{aspect-ratio:2.6/1}
+.fhero .caps{margin-top:8px}.fhero .cp{font-size:.9rem;line-height:1.4;padding:0 4px}
+.fhero .thumbs{margin-top:10px;gap:8px}
+.glass{padding:10px}
+.fhero .fr{transform:translateX(4%);transition:opacity .9s ease,transform 1.1s cubic-bezier(.2,.7,.2,1)}.fhero .fr.on{transform:none}
+.th[aria-current="true"] i{animation:prog 5s linear forwards}
+.car:hover .th i{animation-play-state:running}
+.car.paused .th i{animation:none!important;width:0}
+.pp{position:absolute;top:14px;right:14px;z-index:2;padding:5px 12px;border:0;border-radius:8px;font:600 .78rem inherit;font-family:inherit;background:rgba(255,255,255,.78);color:#1d1d1f;cursor:pointer;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.pp:hover{background:#fff}
+@media (max-width:900px){.fhero .view{aspect-ratio:2/1}}
+@media (prefers-reduced-motion:reduce){.fhero .fr{transform:none}}
+.phero{background:linear-gradient(180deg,var(--bg) 0,var(--alt) 100%);padding:60px 0 44px;overflow:hidden;border-bottom:1px solid var(--line)}
+.ptext{text-align:center;max-width:860px;margin:0 auto 38px}
+.tag3{display:inline-flex;gap:9px;align-items:center;font-size:.85rem;font-weight:500;color:var(--muted);margin-bottom:18px}
+.tag3 img{width:22px;height:22px;border-radius:6px;background:#fff;padding:1px;border:1px solid var(--line);display:block}
+.ptext h1{font-size:clamp(2.6rem,6.6vw,5.2rem);letter-spacing:-.045em;line-height:1.02;margin:0 0 .28em;text-wrap:balance}
+.ptext h1 span{color:var(--muted)}
+.ptext .lead{margin:0 auto 26px;max-width:46ch}.ptext .row{justify-content:center}
+.stage{position:relative;outline:none}
+.track{display:flex;align-items:flex-start;gap:20px;will-change:transform}
+.ready .track{transition:transform .9s cubic-bezier(.3,.7,.2,1)}
+.cd{position:relative;flex:none;width:min(980px,82vw);margin:0;border-radius:26px;overflow:hidden;background:#1d1d1f;transform:scale(.93);opacity:.5;cursor:pointer;box-shadow:0 34px 60px -36px rgba(0,0,0,.55)}
+.ready .cd{transition:transform .9s cubic-bezier(.3,.7,.2,1),opacity .9s}
+.cd.on{transform:none;opacity:1;cursor:default}
+.pic{aspect-ratio:3/1;background:#2a2a2c}.pic img{width:100%;height:100%;object-fit:cover;display:block}
+.cd figcaption{position:absolute;left:0;right:0;bottom:0;padding:70px 32px 22px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.8));color:#fff;font-size:1rem;line-height:1.42;opacity:0}
+.ready .cd figcaption{transition:opacity .6s .25s}
+.cd.on figcaption{opacity:1}
+.cd small{display:block;font-size:.78rem;font-weight:600;letter-spacing:.02em;opacity:.7;margin-bottom:5px}
+.pager{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:20px}
+.sgs{display:flex;gap:6px}
+.sg{position:relative;width:38px;height:20px;padding:0;border:0;background:none;cursor:pointer}
+.sg .bar{position:absolute;left:0;right:0;top:8px;height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+.sg i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--ink)}
+.sg[aria-current="true"] i{animation:prog 5s linear forwards}
+@keyframes prog{to{width:100%}}
+.stage.paused .sg i{animation:none!important;width:0}.stage.paused .sg[aria-current="true"] i{width:100%}
+.ar{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:1.3rem;line-height:1;cursor:pointer;transition:background .2s}
+.ar:hover{background:var(--alt)}
+.pa{margin-left:6px;height:34px;padding:0 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:500 .82rem inherit;font-family:inherit;cursor:pointer}
+.pa:hover{background:var(--alt)}
+.stage:focus-visible{outline-offset:6px}
+@media (max-width:760px){.phero{padding:40px 0 36px}.cd{width:88vw;border-radius:20px}.pic{aspect-ratio:4/3}
+.cd figcaption{position:static;background:none;padding:14px 18px 18px;font-size:.9rem;opacity:1}.ready .cd figcaption{transition:none}
+.cd small{margin-bottom:3px}.ar{display:none}}
+@media (prefers-reduced-motion:reduce){.ready .track,.ready .cd,.ready .cd figcaption{transition:none}}
+.phero{padding:34px 0 28px}
+.ptext{max-width:none;margin:0 auto 22px}
+.tag3{margin-bottom:12px}
+.ptext h1{font-size:clamp(1.3rem,5.4vw,3.9rem);white-space:nowrap;margin:0 0 .22em;letter-spacing:-.04em;line-height:1.05}
+.ptext .lead{font-size:clamp(1rem,1.6vw,1.2rem);max-width:none;margin:0 auto 18px;color:var(--muted)}
+.stage{--cw:min(980px,82vw)}
+.track{display:block;position:relative;height:340px}
+.cd{position:absolute;top:0;left:50%;width:var(--cw);margin-left:calc(var(--cw)/-2);transform:scale(.93)}
+.cd[data-d="far"]{opacity:0;pointer-events:none}
+.cd[data-d="-1"],.cd[data-d="1"]{opacity:.5}
+.ready .track{transition:height .5s}
+.pager{margin-top:14px}
+@media (max-width:760px){.stage{--cw:88vw}.phero{padding:26px 0 24px}.ptext{margin-bottom:16px}.track{height:360px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap nav">
+  <a class="brand" href="#home" aria-label="VRIKSH home"><img class="logo" src="images/vriksh-logo.png" alt="" width="30" height="30">VRIKSH</a>
+  <nav aria-label="Main"><ul id="menu">
+   <li><a href="#about">About</a></li><li><a href="#certify">Get certified</a></li><li><a href="#shipment">Shipment</a></li>
+   <li><a href="#governance">Governance</a></li><li><a href="#notifications">Notifications</a></li><li><a href="#for">Who it’s for</a></li><li><a href="app-manual.html">App manual</a></li><li><a href="#contact">Contact</a></li>
+  </ul></nav>
+  <a class="btn sm" href="#certify">Apply</a>
+  <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+ </div>
+</header>
+
+<main>
+<section class="phero" id="home">
+ <div class="wrap ptext">
+  <span class="tag3"><img src="images/vriksh-logo.png" alt="" width="22" height="22">VRIKSH, an initiative of EPCH</span>
+  <h1>Proof, from forest <span>to shipment.</span></h1>
+  <p class="lead">India’s timber legality standard for handicraft exports, showing buyers where your wood comes from.</p>
+  <div class="row"><a class="btn" href="#certify">Get certified</a><a class="btn o" href="#search">Search a certificate</a></div>
+ </div>
+ <div class="stage" role="region" aria-roledescription="carousel" aria-label="VRIKSH at fairs and events" tabindex="0">
+  <div class="track">
+   <figure class="cd on" aria-roledescription="slide" aria-label="1 of 5"><div class="pic"><img src="images/hero-1.jpg" alt="VRIKSH Mobile App launch at IHGF Delhi Fair 2026" style="object-position:50% 50%"></div><figcaption><small>IHGF Delhi Fair 2026</small>Shri Giriraj Singh, Hon’ble Minister of Textiles, Government of India, launched the VRIKSH Mobile App during the 62nd edition of IHGF Delhi Fair 2026.</figcaption></figure>
+   <figure class="cd" aria-roledescription="slide" aria-label="2 of 5"><div class="pic"><img src="images/hero-2.jpg" alt="Textiles Secretary at the VRIKSH booth, IHGF Delhi Fair Autumn 2026" style="object-position:50% 78%"></div><figcaption><small>IHGF Delhi Fair Autumn 2026</small>Smt. Neelam Shami Rao, Secretary (Textiles), Ministry of Textiles, Govt. of India, along with senior officials, visited the VRIKSH Promotional Booth at the 62nd IHGF Delhi Fair Autumn 2026.</figcaption></figure>
+   <figure class="cd" aria-roledescription="slide" aria-label="3 of 5"><div class="pic"><img src="images/hero-3.jpg" alt="Panel discussion on timber legality at UPITS 2026" style="object-position:50% 74%"></div><figcaption><small>UPITS 2026</small>EPCH conducted a Panel Discussion on “Timber Legality, Sustainable Sourcing and Global Market Access for India’s Woodcraft Sector” on 27.09.2026 during the 4th Uttar Pradesh International Trade Show (UPITS) 2026.</figcaption></figure>
+   <figure class="cd" aria-roledescription="slide" aria-label="4 of 5"><div class="pic"><img src="images/hero-4.jpg" alt="UP Minister visiting the VRIKSH booth, IHGF Delhi Fair Spring 2025" style="object-position:50% 42%"></div><figcaption><small>IHGF Delhi Fair Spring 2025</small>Shri Krishan Pal Malik, Hon’ble Minister of State for Zoological Garden, Environment, Forest and Climate Change, Uttar Pradesh, visited the VRIKSH Booth at the 59th IHGF Delhi Fair Spring 2025.</figcaption></figure>
+   <figure class="cd" aria-roledescription="slide" aria-label="5 of 5"><div class="pic"><img src="images/hero-5.jpg" alt="Rajasthan Minister and Customs Commissioner at the VRIKSH booth, IHGF Delhi Fair 2024" style="object-position:50% 50%"></div><figcaption><small>IHGF Delhi Fair 2024</small>Shri K.K. Bishnoi, Hon’ble State Minister of Industry &amp; Commerce, Youth Affairs &amp; Sports, Skills, Planning &amp; Entrepreneurship and Policy Making, Govt. of Rajasthan, and Shri Shailesh Kumar, Commissioner of Customs, ICD, TKD, New Delhi, visited the VRIKSH booth during the 58th IHGF Delhi Fair 2024.</figcaption></figure>
+  </div>
+  <div class="pager">
+   <button type="button" class="ar prv" aria-label="Previous photo">&#8249;</button>
+   <div class="sgs"><button type="button" class="sg" aria-label="Show photo 1"><span class="bar"><i></i></span></button><button type="button" class="sg" aria-label="Show photo 2"><span class="bar"><i></i></span></button><button type="button" class="sg" aria-label="Show photo 3"><span class="bar"><i></i></span></button><button type="button" class="sg" aria-label="Show photo 4"><span class="bar"><i></i></span></button><button type="button" class="sg" aria-label="Show photo 5"><span class="bar"><i></i></span></button></div>
+   <button type="button" class="ar nxt" aria-label="Next photo">&#8250;</button>
+   <button type="button" class="pa" aria-label="Pause slideshow">Pause</button>
+  </div>
+ </div>
+</section>
+
+<section class="quick" id="quick">
+ <div class="wrap qgrid">
+  <a class="qbtn rv" href="#search"><span class="qi"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></span><span class="qt">Certificate search</span><span class="qc" aria-hidden="true">&#8250;</span></a>
+  <a class="qbtn rv" href="app-manual.html"><span class="qi"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span><span class="qt">App manual<em>New</em></span><span class="qc" aria-hidden="true">&#8250;</span></a>
+  <a class="qbtn rv" href="https://vrikshindia.in/external_file/FAQs-for-Mobile-Apps.pdf" target="_blank" rel="noopener"><span class="qi"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01"/></svg></span><span class="qt">App FAQs<em>New</em></span><span class="qc" aria-hidden="true">&#8250;</span></a>
+  <a class="qbtn rv" href="https://vrikshindia.in/index.php/user/pressrelease" target="_blank" rel="noopener"><span class="qi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h13v14H6a2 2 0 0 1-2-2zM17 9h3v8a2 2 0 0 1-2 2"/></svg></span><span class="qt">Press releases</span><span class="qc" aria-hidden="true">&#8250;</span></a>
+ </div>
+</section>
+
+<section class="alt" id="search">
+ <div class="wrap split">
+  <div class="rv">
+   <h2>Find a certified supplier.</h2>
+   <p class="lead">Search VRIKSH certificate holders by license code, or by organization and product details.</p>
+   <a class="link" href="https://vrikshindia.in/index.php/user/certifi_user" target="_blank" rel="noopener">Open the official registry</a>
+  </div>
+  <div class="sbox rv">
+   <div class="seg" role="tablist" aria-label="Search mode">
+    <button type="button" class="tab" role="tab" aria-selected="true" data-s="s1">License code</button>
+    <button type="button" class="tab" role="tab" aria-selected="false" data-s="s2">Other fields</button>
+   </div>
+   <form id="cf" novalidate>
+    <div id="s1">
+     <label>Vriksh License Code<input name="code" autocomplete="off" placeholder="e.g. VRK-DEMO-001"></label>
+    </div>
+    <div id="s2" hidden>
+     <fieldset><legend>Organization</legend>
+      <div class="fg">
+       <label>Name<input name="name" autocomplete="off"></label>
+       <label>Contact person<input name="contact" autocomplete="off"></label>
+      </div>
+      <label>State / Country<input name="state" autocomplete="off"></label>
+     </fieldset>
+     <fieldset><legend>Product</legend>
+      <div class="fg">
+       <label>Production of<input name="prod" autocomplete="off"></label>
+       <label>Manufactured from<input name="mfg" autocomplete="off"></label>
+      </div>
+      <label>Originating from<input name="orig" autocomplete="off"></label>
+     </fieldset>
+    </div>
+    <div class="row" style="margin-top:6px"><button class="btn" type="submit">Search</button><button class="btn o" type="reset">Clear</button></div>
+   </form>
+   <div id="res" aria-live="polite"></div>
+  </div>
+ </div>
+</section>
+
+<section id="about">
+ <div class="wrap split">
+  <div class="rv">
+   <h2>Welcome to VRIKSH.</h2>
+   <p class="lead">The EPCH VRIKSH timber legality assessment and verification standard is for businesses that want to track their wood products accurately, and make credible claims about legal origin and transport.</p>
+   <div class="row"><a class="link" href="http://www.epch.in/index.php?option=com_content&view=article&id=53&Itemid=177/">Know more</a><a class="link" href="https://vrikshindia.in/index.php/user/our_history">Our history</a></div>
+  </div>
+  <ul class="facts rv">
+   <li><b>Legal right to harvest and trade</b>Each supply chain is checked for lawful origin.</li>
+   <li><b>Lower risk for buyers</b>Assurance of legality compliance before goods ship.</li>
+   <li><b>Aligned with international rules</b>Includes ongoing EUDR stakeholder consultation.</li>
+   <li><b>Mapped to the SDGs</b><a href="https://vrikshindia.in/external_file/sdgmappingreport.pdf">Read the SDG mapping report</a></li>
+  </ul>
+ </div>
+ <div class="wrap grid g3" style="margin-top:20px">
+  <a class="tile rv" href="https://vrikshindia.in/index.php/user/vision"><h3>Vision &amp; Mission</h3><p>What VRIKSH stands for.</p></a>
+  <a class="tile rv" href="https://vrikshindia.in/index.php/user/importance"><h3>Importance</h3><p>Why legality matters in the wood trade.</p></a>
+  <a class="tile rv" href="https://vrikshindia.in/index.php/user/area"><h3>Area covered</h3><p>Species and regions within scope.</p></a>
+ </div>
+</section>
+
+<section class="alt" id="certify">
+ <div class="wrap">
+  <div class="shead rv"><h2>Get certified.</h2><p class="lead">Four steps. Certified suppliers appear in the public certificate search.</p></div>
+  <div class="steps">
+   <div class="step rv"><h3>Choose your route</h3><p>Apply as a Member or as an Associate.</p></div>
+   <div class="step rv"><h3>Submit the application</h3><p>Fill in the form and attach supporting documents.</p></div>
+   <div class="step rv"><h3>Assessment</h3><p>Your supply chain is verified against the VRIKSH standard.</p></div>
+   <div class="step rv"><h3>Certified</h3><p>Use the VRIKSH mark and get listed for buyers to verify.</p></div>
+  </div>
+  <div class="row" style="margin-top:24px">
+   <a class="btn" href="https://vrikshindia.in/external_file/ApplicationForm_V11.pdf">Application for members</a>
+   <a class="btn o" href="https://vrikshindia.in/external_file/associatesapplicationform.pdf">Application for associates</a>
+   <a class="link" href="https://vrikshindia.in/index.php/user/how_to_apply">How to apply</a>
+  </div>
+  <div class="grid g3" style="margin-top:20px">
+   <a class="tile rv" href="https://vrikshindia.in/index.php/user/certifications"><h3>Certification process</h3><p>What happens after you apply.</p></a>
+   <a class="tile rv" href="https://vrikshindia.in/index.php/user/Benefits"><h3>Benefits</h3><p>What certification gives you in the market.</p></a>
+   <a class="tile rv" href="https://vrikshindia.in/external_file/processforassociates.pdf"><h3>Process for associates<span class="new">New</span></h3><p>Steps for associate applicants.</p></a>
+  </div>
+  <h3 style="margin:28px 0 8px">Standards</h3>
+  <a class="doc" href="https://vrikshindia.in/external_file/final_standards.pdf"><span>VRIKSH Timber Legality Assessment and Verification Standard – India</span><span>PDF</span></a>
+  <a class="doc" href="https://vrikshindia.in/external_file/standards.pdf"><span>VRIKSH Certification Mark Guidance Standard</span><span>PDF</span></a>
+  <a class="doc" href="https://vrikshindia.in/external_file/VRIKSH-STD-V2.0_Draft%20V0_%2020240528_Clean.pdf"><span>Stakeholder consultation for EUDR (draft Standard V2.0)</span><span>PDF</span></a>
+ </div>
+</section>
+
+<section id="shipment">
+ <div class="wrap">
+  <div class="shead rv"><h2>Shipment certification.</h2><p class="lead">Every consignment can carry its own certificate. Choose your wood to see the forms you need.</p></div>
+  <div class="seg" role="tablist" aria-label="Shipment type">
+   <button class="tab" role="tab" aria-selected="true" data-p="p1">All species</button>
+   <button class="tab" role="tab" aria-selected="false" data-p="p2">Mango &amp; Acacia</button>
+  </div>
+  <div class="panel" id="p1">
+   <a class="doc" href="https://vrikshindia.in/external_file/ProcessDocumentation.pdf"><span>Process documents</span><span>PDF</span></a>
+   <a class="doc" href="https://vrikshindia.in/external_file/FormA_ApplicationForm.pdf"><span>Form A – Application form</span><span>PDF</span></a>
+   <a class="doc" href="https://vrikshindia.in/external_file/FormB_ApplicationForm.pdf"><span>Form B – Documents checklist</span><span>PDF</span></a>
+   <a class="doc" href="https://vrikshindia.in/external_file/FormE_ApplicationForm.pdf"><span>Form E – Affidavit</span><span>PDF</span></a>
+   <a class="doc" href="https://vrikshindia.in/external_file/cocdocs.pdf"><span>List of documents</span><span>PDF</span></a>
+   <a class="doc" href="https://vrikshindia.in/external_file/FAQs.pdf"><span>FAQ</span><span>PDF</span></a>
+  </div>
+  <div class="panel" id="p2" hidden>
+   <a class="doc" href="https://vrikshindia.in/index.php/user/shipmentcertificate"><span>Shipment certificate for Mango &amp; Acacia wood</span><span>Page</span></a>
+   <a class="doc" href="https://vrikshindia.in/external_file/FormA.pdf"><span>Form A – Application form</span><span>PDF</span></a>
+   <a class="doc" href="https://vrikshindia.in/external_file/RevisedFormB.pdf"><span>Form B – Application form</span><span>PDF</span></a>
+   <a class="doc" href="https://vrikshindia.in/external_file/FormE-AffidavitRevised.pdf"><span>Form E – Affidavit</span><span>PDF</span></a>
+   <a class="doc" href="https://vrikshindia.in/external_file/circular20210602.pdf"><span>Other timber species (circular)</span><span>PDF</span></a>
+  </div>
+ </div>
+</section>
+
+<section class="alt" id="governance">
+ <div class="wrap">
+  <div class="shead rv"><h2>Governance you can check.</h2><p class="lead">A defined structure with technical and accreditation oversight.</p></div>
+  <div class="grid g3">
+   <a class="tile rv" href="https://vrikshindia.in/external_file/scopestructure.pdf"><h3>Scope and structure</h3><p>How the system is organised.</p></a>
+   <a class="tile rv" href="https://vrikshindia.in/index.php/user/governance"><h3>Governing Council</h3><p>Policy and strategic direction.</p></a>
+   <a class="tile rv" href="https://vrikshindia.in/index.php/user/technicalcommittee"><h3>Technical Committee</h3><p>Standard development and review.</p></a>
+   <a class="tile rv" href="https://vrikshindia.in/index.php/user/accreditationboard"><h3>Accreditation Board</h3><p>Oversight of assessment bodies.</p></a>
+   <a class="tile rv" href="https://vrikshindia.in/index.php/user/vrikshsecretariat"><h3>Secretariat</h3><p>Day-to-day operations.</p></a>
+   <a class="tile rv" href="https://vrikshindia.in/index.php/user/logo"><h3>Logo &amp; trademark</h3><p>Rules for using the VRIKSH mark.</p></a>
+  </div>
+ </div>
+</section>
+
+<section id="notifications">
+ <div class="wrap split">
+  <div class="rv"><h2>Notifications.</h2><p class="lead">Government and international letters that back the system.</p>
+  <a class="link" href="https://vrikshindia.in/external_file/VrikshStarExporterScheme.pdf">VRIKSH Star Exporter Scheme</a></div>
+  <div class="rv">
+   <a class="doc" href="https://vrikshindia.in/external_file/dgft-notification.pdf"><span>DGFT notification</span><span>PDF</span></a>
+   <a class="doc" href="https://vrikshindia.in/external_file/letteron24jan2017.pdf"><span>Swiss Government (CITES Depository)</span><span>PDF</span></a>
+   <a class="doc" href="https://vrikshindia.in/external_file/letteron26jan2017.pdf"><span>CITES</span><span>PDF</span></a>
+   <a class="doc" href="https://vrikshindia.in/external_file/letteron03mar2017.pdf"><span>MoEFCC (Indian CMA)</span><span>PDF</span></a>
+  </div>
+ </div>
+</section>
+
+<section class="alt" id="for">
+ <div class="wrap">
+  <div class="shead rv"><h2>Built for everyone in the chain.</h2><p class="lead">Whether you export, buy or regulate, VRIKSH gives you one verifiable record of legal origin.</p></div>
+  <div class="grid g3 aud">
+   <div class="tile rv"><small>For exporters</small><h3>Certify once, ship with proof.</h3><p>Certify your supply chain, then give each consignment its own shipment certificate.</p><div class="links"><a class="link" href="#certify">Get certified</a><a class="link" href="#shipment">Shipment forms</a></div></div>
+   <div class="tile rv"><small>For buyers</small><h3>Check before you buy.</h3><p>Verify a supplier’s certificate online, and see the species and origin behind the product.</p><div class="links"><a class="link" href="#search">Search a certificate</a><a class="link" href="app-manual.html">App manual</a></div></div>
+   <div class="tile rv"><small>For officials and partners</small><h3>See how it is governed.</h3><p>Review the council, committees and accreditation structure, and the government letters behind them.</p><div class="links"><a class="link" href="#governance">Governance</a><a class="link" href="#notifications">Notifications</a></div></div>
+  </div>
+ </div>
+</section>
+
+<section id="contact">
+ <div class="wrap">
+  <div class="cta center rv">
+   <h2>Export with proof of legality.</h2>
+   <p class="lead">Apply for certification, or talk to the Secretariat about your product and species.</p>
+   <div class="row"><a class="btn w" href="https://vrikshindia.in/index.php/user/contact">Contact us</a><a class="btn o" href="https://vrikshindia.in/index.php/user/how_to_apply">How to apply</a></div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div class="fl"><a href="https://www.epch.in" target="_blank" rel="noopener"><img class="epch" src="images/epch-logo.png" alt="Export Promotion Council for Handicrafts (EPCH)"></a><span>© 2013 VRIKSH. All rights reserved.<br>An initiative of the Export Promotion Council for Handicrafts.</span></div>
+  <div><a href="https://vrikshindia.in/index.php/user/policy">Privacy Policy</a><a href="app-manual.html">App manual</a><a href="https://vrikshindia.in/index.php/user/pressclippings">Press</a><a href="https://vrikshindia.in/index.php/user/contact">Contact</a></div>
+ </div>
+</footer>
+<button class="top" id="top" aria-label="Back to top">&#8593;</button>
+
+<script>
+(function(){
+var d=document,menu=d.getElementById('menu'),btn=d.querySelector('.menu-btn');
+btn.addEventListener('click',function(){var o=menu.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
+menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');btn.setAttribute('aria-expanded',false)}});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
+d.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=(i%4)*80+'ms';io.observe(el)});
+d.querySelectorAll('.tab[data-p]').forEach(function(t){t.addEventListener('click',function(){
+ d.querySelectorAll('.tab[data-p]').forEach(function(x){x.setAttribute('aria-selected',x===t);d.getElementById(x.dataset.p).hidden=x!==t})})});
+(function(){var svg=d.getElementById('forest');if(!svg)return;var NS='http://www.w3.org/2000/svg',seed=11;
+function rnd(){seed=(seed*16807)%2147483647;return(seed-1)/2147483646}
+function el(n,a,p){var e=d.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e}
+var defs=el('defs',{});
+var fog=el('linearGradient',{id:'fog',x1:0,y1:0,x2:0,y2:1},defs);el('stop',{offset:0,'stop-color':'#fff','stop-opacity':0},fog);el('stop',{offset:1,'stop-color':'#fff','stop-opacity':.2},fog);
+var ray=el('linearGradient',{id:'ray',x1:0,y1:0,x2:0,y2:1},defs);el('stop',{offset:0,'stop-color':'#fff','stop-opacity':.28},ray);el('stop',{offset:1,'stop-color':'#fff','stop-opacity':0},ray);
+var L=[{n:38,w:[7,15],c:'#78787b',cn:18,cr:[45,85]},{n:28,w:[14,28],c:'#47474a',cn:16,cr:[55,105]},{n:17,w:[32,58],c:'#1b1b1c',cn:12,cr:[75,135]},{n:7,w:[70,125],c:'#060606',cn:7,cr:[105,165]}];
+var groups=[];
+L.forEach(function(l,i){var g=el('g',{});groups.push(g);
+ for(var j=0;j<l.cn;j++){el('ellipse',{cx:rnd()*1700-50,cy:rnd()*110-30,rx:l.cr[0]+rnd()*(l.cr[1]-l.cr[0]),ry:(l.cr[0]+rnd()*(l.cr[1]-l.cr[0]))*.7,fill:l.c},g)}
+ for(var k=0;k<l.n;k++){var x=rnd()*1650-25,w=l.w[0]+rnd()*(l.w[1]-l.w[0]),lean=(rnd()-.5)*w*.9;
+  el('polygon',{points:x+',-90 '+(x+w*.8)+',-90 '+(x+w*1.1+lean)+',700 '+(x-w*.1+lean)+',700',fill:l.c},g)}
+ for(var m=0;m<l.cn*.9;m++){el('ellipse',{cx:rnd()*1700-50,cy:600+rnd()*40,rx:(l.cr[0]+rnd()*60),ry:20+rnd()*(l.cr[1]*.42),fill:l.c},g)}
+ if(i<3)el('rect',{x:0,y:0,width:1600,height:600,fill:'url(#fog)',opacity:i===0?.9:.55},svg);
+ if(i===1){[[380,-50,170,18],[760,-50,150,14],[1120,-50,190,20]].forEach(function(r){el('polygon',{points:r[0]+',-50 '+(r[0]+r[3])+',-50 '+(r[0]-r[2]+r[3])+',650 '+(r[0]-r[2])+',650',fill:'url(#ray)',opacity:.5},svg)})}
+});
+requestAnimationFrame(function(){svg.classList.add('on')});
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches){var f=[.015,.04,.08,.13];addEventListener('scroll',function(){var y=scrollY;if(y>900)return;groups.forEach(function(g,i){g.style.transform='translateY('+(y*f[i]).toFixed(1)+'px)'})},{passive:true})}
+})();
+(function(){var d=document,f=d.getElementById('cf'),res=d.getElementById('res'),mode='s1';
+var DATA=[
+{code:'VRK-DEMO-001',name:'Demo Handicrafts Pvt Ltd',contact:'A. Sharma',state:'Uttar Pradesh, India',prod:'Wooden handicrafts',mfg:'Mango wood',orig:'Uttar Pradesh'},
+{code:'VRK-DEMO-002',name:'Sample Woodcraft Exports',contact:'R. Khan',state:'Rajasthan, India',prod:'Furniture',mfg:'Sheesham wood',orig:'Rajasthan'},
+{code:'VRK-DEMO-003',name:'Example Timber Arts',contact:'S. Das',state:'Assam, India',prod:'Home decor',mfg:'Acacia wood',orig:'Assam'},
+{code:'VRK-DEMO-004',name:'Placeholder Carvings Co.',contact:'M. Iyer',state:'Tamil Nadu, India',prod:'Carved panels',mfg:'Melia dubia',orig:'Tamil Nadu'}];
+var LBL={name:'Contact',contact:'Contact person',state:'State / Country',prod:'Production of',mfg:'Manufactured from',orig:'Originating from'};
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+d.querySelectorAll('.tab[data-s]').forEach(function(t){t.addEventListener('click',function(){mode=t.dataset.s;
+ d.querySelectorAll('.tab[data-s]').forEach(function(x){x.setAttribute('aria-selected',x===t);d.getElementById(x.dataset.s).hidden=x!==t});res.innerHTML=''})});
+var NOTE='<p class="note">This prototype searches sample records only. The live version would query the official VRIKSH registry.</p>';
+f.addEventListener('submit',function(e){e.preventDefault();var q={},any=false,keys=mode==='s1'?['code']:['name','contact','state','prod','mfg','orig'];
+ keys.forEach(function(k){var v=f.elements[k].value.trim().toLowerCase();if(v){q[k]=v;any=true}});
+ if(!any){res.innerHTML='<p>Enter '+(mode==='s1'?'a license code':'at least one field')+' to search.</p>'+NOTE;return}
+ var hits=DATA.filter(function(r){return Object.keys(q).every(function(k){return r[k].toLowerCase().indexOf(q[k])>-1})});
+ if(!hits.length){res.innerHTML='<p><b>No certificate holders found.</b><br><span class="muted">Check the spelling, or try fewer fields.</span></p>'+NOTE;return}
+ res.innerHTML='<p class="muted" style="margin:0 0 6px">'+hits.length+' result'+(hits.length>1?'s':'')+'</p>'+hits.map(function(r){
+  return '<div class="hit"><span class="code">'+esc(r.code)+'</span><b>'+esc(r.name)+'</b><dl>'+['contact','state','prod','mfg','orig'].map(function(k){return '<dt>'+LBL[k]+'</dt><dd>'+esc(r[k])+'</dd>'}).join('')+'</dl></div>'}).join('')+NOTE});
+f.addEventListener('reset',function(){res.innerHTML=''});
+})();
+(function(){var car=d.querySelector('.car');if(!car)return;
+var sl=[].slice.call(car.querySelectorAll('.sl')),dots=car.querySelector('.dots'),i=0,tm=null,hold=false,reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+sl.forEach(function(s,k){var im=s.querySelector('img'),ph=s.querySelector('.ph');ph.style.setProperty('--u','url("'+im.src+'")');
+ var b=d.createElement('button');b.type='button';b.setAttribute('aria-label','Show slide '+(k+1));b.addEventListener('click',function(){go(k,true)});dots.appendChild(b)});
+function go(n,user){i=(n+sl.length)%sl.length;sl.forEach(function(s,k){s.classList.toggle('on',k===i);s.setAttribute('aria-hidden',k!==i)});
+ [].forEach.call(dots.children,function(b,k){b.setAttribute('aria-current',k===i)});if(user)restart()}
+function restart(){clearInterval(tm);if(!reduce)tm=setInterval(function(){if(!hold)go(i+1)},6500)}
+car.querySelector('.prv').addEventListener('click',function(){go(i-1,true)});car.querySelector('.nxt').addEventListener('click',function(){go(i+1,true)});
+car.addEventListener('mouseenter',function(){hold=true});car.addEventListener('mouseleave',function(){hold=false});
+car.addEventListener('focusin',function(){hold=true});car.addEventListener('focusout',function(){hold=false});
+car.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')go(i-1,true);if(e.key==='ArrowRight')go(i+1,true)});
+var x0=null;car.addEventListener('pointerdown',function(e){x0=e.clientX});car.addEventListener('pointerup',function(e){if(x0!==null&&Math.abs(e.clientX-x0)>45)go(e.clientX<x0?i+1:i-1,true);x0=null});
+go(0);restart()})();
+(function(){var st=d.querySelector('.stage');if(!st)return;
+var tr=st.querySelector('.track'),cd=[].slice.call(st.querySelectorAll('.cd')),sg=[].slice.call(st.querySelectorAll('.sg')),pa=st.querySelector('.pa'),n=cd.length,i=0,prev=null,tm=null,playing=true,T=5000,moved=false;
+function rel(k){var x=((k-i)%n+n)%n;return x>n/2?x-n:x}
+function layout(){var W=cd[0].offsetWidth,h=0;
+ cd.forEach(function(c,k){var r=rel(k),old=prev?prev[k]:r;c.setAttribute('data-d',Math.abs(r)>1?'far':r);
+  var tf='translateX('+(r*(W+20))+'px) scale('+(r===0?1:.93)+')';
+  if(Math.abs(r-old)>2){c.style.transition='none';c.style.transform=tf;void c.offsetWidth;c.style.transition=''}else c.style.transform=tf;
+  c.classList.toggle('on',r===0);c.setAttribute('aria-hidden',r!==0);h=Math.max(h,c.offsetHeight)});
+ prev=cd.map(function(c,k){return rel(k)});tr.style.height=h+'px'}
+function go(m){i=(m+n)%n;sg.forEach(function(b,k){b.setAttribute('aria-current',k===i);var bar=b.querySelector('i');bar.style.animation='none';if(k===i){void bar.offsetWidth;bar.style.animation=''}});layout()}
+function start(){clearInterval(tm);if(playing)tm=setInterval(function(){go(i+1)},T)}
+function user(m){go(m);start()}
+sg.forEach(function(b,k){b.addEventListener('click',function(){user(k)})});
+cd.forEach(function(c,k){c.addEventListener('click',function(){if(!moved&&k!==i)user(k)})});
+st.querySelector('.prv').addEventListener('click',function(){user(i-1)});st.querySelector('.nxt').addEventListener('click',function(){user(i+1)});
+pa.addEventListener('click',function(){playing=!playing;st.classList.toggle('paused',!playing);pa.textContent=playing?'Pause':'Play';pa.setAttribute('aria-label',playing?'Pause slideshow':'Play slideshow');start()});
+st.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')user(i-1);if(e.key==='ArrowRight')user(i+1)});
+var x0=null;st.addEventListener('pointerdown',function(e){x0=e.clientX;moved=false});
+st.addEventListener('pointerup',function(e){if(x0!==null&&Math.abs(e.clientX-x0)>45){moved=true;user(e.clientX<x0?i+1:i-1)}x0=null});
+addEventListener('resize',layout);
+go(0);requestAnimationFrame(function(){requestAnimationFrame(function(){st.classList.add('ready');layout()})});start()})();
+var top=d.getElementById('top');
+addEventListener('scroll',function(){top.classList.toggle('show',d.documentElement.scrollTop>700)},{passive:true});
+top.addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'})});
+})();
+</script>
+</body>
+</html>

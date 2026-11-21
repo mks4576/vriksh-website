@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="images/vriksh-logo.png">
+<title>VRIKSH Mobile App – User &amp; Operations Manual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+:root{--bg:#fff;--alt:#f5f5f7;--ink:#1d1d1f;--muted:#6e6e73;--line:#d2d2d7;--nav:rgba(255,255,255,.78);--btn:#000;--btn-ink:#fff;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000;--alt:#161617;--ink:#f5f5f7;--muted:#a1a1a6;--line:#3a3a3c;--nav:rgba(0,0,0,.72);--btn:#f5f5f7;--btn-ink:#000;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000;--alt:#161617;--ink:#f5f5f7;--muted:#a1a1a6;--line:#3a3a3c;--nav:rgba(0,0,0,.72);--btn:#f5f5f7;--btn-ink:#000;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Inter","Helvetica Neue",Arial,sans-serif;letter-spacing:-.011em;-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0 0 .4em;font-weight:700;letter-spacing:-.03em;line-height:1.1}
+h2{font-size:clamp(1.55rem,3vw,2.1rem);margin-top:0}h3{font-size:1.15rem;letter-spacing:-.02em;margin-top:1.4em}
+p{margin:0 0 1em;max-width:68ch}a{color:inherit}
+:focus-visible{outline:3px solid #0071e3;outline-offset:3px;border-radius:8px}
+.wrap{width:min(1080px,90%);margin-inline:auto}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);z-index:60}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:52px;gap:16px}
+.brand{font-weight:700;letter-spacing:.02em;text-decoration:none;display:flex;gap:9px;align-items:center}
+.brand svg{width:20px;height:20px}.nav .sub{color:var(--muted);font-size:.8rem}
+.btn{display:inline-block;padding:12px 24px;border-radius:980px;font-weight:500;font-size:1rem;font-family:inherit;text-decoration:none;border:1px solid transparent;transition:transform .2s,opacity .2s;cursor:pointer;background:var(--btn);color:var(--btn-ink)}
+.btn:hover{opacity:.82}.btn:active{transform:scale(.97)}.btn[disabled]{opacity:.5;cursor:wait}
+.btn.sm{padding:6px 14px;font-size:.8rem}.btn.w{background:#fff;color:#000}.btn.o{background:transparent;color:inherit;border-color:currentColor}
+.row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.hero{background:radial-gradient(900px 380px at 80% 0,#2a2a2d,transparent 70%),#000;color:#f5f5f7;padding:64px 0 56px}
+.hero h1{font-size:clamp(2.3rem,6vw,4.4rem);letter-spacing:-.04em;margin-bottom:.15em}
+.hero .t2{font-size:clamp(1.3rem,3vw,2rem);color:#a1a1a6;font-weight:600;letter-spacing:-.025em;margin:0 0 20px}
+.hero p{color:#d2d2d7;max-width:52ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px;padding:0;list-style:none}
+.chips li{border:1px solid #3a3a3c;border-radius:980px;padding:5px 14px;font-size:.85rem;color:#d2d2d7}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:56px;padding:48px 0 72px;align-items:start}
+aside{position:sticky;top:calc(76px + env(safe-area-inset-top,0px))}
+aside b{display:block;font-size:.8rem;color:var(--muted);margin-bottom:10px;font-weight:600}
+aside ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)}
+aside a{display:block;text-decoration:none;font-size:.85rem;color:var(--muted);padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .2s}
+aside a:hover{color:var(--ink)}aside a.on{color:var(--ink);font-weight:600;border-left-color:var(--ink)}
+.mtoc{display:none;margin-bottom:28px;background:var(--alt);border-radius:14px;padding:14px 18px}
+.mtoc summary{font-weight:600;cursor:pointer}.mtoc ol{margin:10px 0 0;padding-left:20px;font-size:.92rem}.mtoc li{padding:3px 0}
+#doc{background:var(--bg);min-width:0}
+#doc .doc-head{display:none}
+#doc section{padding:0 0 40px;margin:0 0 40px;border-bottom:1px solid var(--line)}
+#doc section:last-child{border:0;margin:0}
+#doc ol.steps{margin:0 0 1.1em;padding-left:1.7em}#doc ol.steps li{padding:4px 0 4px 4px}
+#doc ol.steps li::marker{font-weight:700;color:var(--muted)}
+#doc ul{margin:0 0 1em;padding-left:1.3em}#doc ul li{padding:3px 0}
+.box{background:var(--alt);border-radius:16px;padding:16px 20px;margin:1.1em 0;font-size:.95rem}
+.box b:first-child{display:block;margin-bottom:2px}
+.box.imp{background:var(--ink);color:var(--bg)}
+.tip{font-size:.9rem;color:var(--muted)}
+.trouble{display:grid;gap:0;margin:0}.trouble div{padding:14px 0;border-top:1px solid var(--line)}.trouble div:last-child{border-bottom:1px solid var(--line)}
+.trouble b{display:block}.trouble span{color:var(--muted);font-size:.95rem}
+.check{list-style:none;padding:0!important}.check li{position:relative;padding:10px 0 10px 34px!important;border-top:1px solid var(--line)}
+.check li::before{content:"";position:absolute;left:2px;top:14px;width:18px;height:18px;border:2px solid var(--ink);border-radius:5px}
+table{width:100%;border-collapse:collapse;font-size:.95rem}th,td{text-align:left;padding:12px 14px;border-top:1px solid var(--line);vertical-align:top}
+th{background:var(--alt);font-size:.82rem;color:var(--muted);border:0}th:first-child{border-radius:10px 0 0 10px}th:last-child{border-radius:0 10px 10px 0}
+footer{border-top:1px solid var(--line);padding:28px 0 36px;font-size:.78rem;color:var(--muted)}
+.bar{position:fixed;left:0;top:0;height:3px;width:0;background:var(--ink);z-index:70}
+.top{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:44px;height:44px;border-radius:50%;background:var(--nav);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);color:var(--ink);border:1px solid var(--line);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s;z-index:40;font-size:1.1rem}
+.top.show{opacity:1;pointer-events:auto}
+/* PDF capture mode: always light, fixed width */
+#doc.pdfmode{--bg:#fff;--alt:#f5f5f7;--ink:#1d1d1f;--muted:#6e6e73;--line:#d2d2d7;width:760px;max-width:none;padding:0;font-size:14px;color:var(--ink);background:#fff}
+#doc.pdfmode .doc-head{display:block;padding:0 0 28px;margin-bottom:28px;border-bottom:2px solid #1d1d1f}
+#doc.pdfmode .doc-head h1{font-size:34px;margin:0 0 4px}#doc.pdfmode .doc-head p{margin:0;color:var(--muted);font-size:14px}
+#doc.pdfmode h2{font-size:22px}#doc.pdfmode h3{font-size:16px}
+@media (max-width:900px){.layout{grid-template-columns:1fr;gap:0;padding-top:32px}aside{display:none}.mtoc{display:block}.nav .sub{display:none}}
+@media (max-width:520px){.nav .btn.sm{padding:6px 12px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{body::before,header,.hero,aside,.mtoc,.top,.bar,footer{display:none!important}body{background:#fff;color:#000}.layout{display:block;padding:0}#doc .doc-head{display:block;margin-bottom:20px}#doc section{break-inside:avoid-page}}
+.brand img{width:30px;height:30px;border-radius:50%;background:#fff;display:block}
+.epch{height:58px;width:auto;background:#fff;border-radius:10px;padding:6px 10px;display:block}
+.fl{display:flex;gap:16px;align-items:center}.fl span{line-height:1.4}
+.dh-logos{display:flex;gap:16px;align-items:center;margin-bottom:16px}.dh-logos .epch{height:52px}.dh-logos img.v{height:52px;width:52px}
+#doc section{padding:0 0 28px;margin:0 0 28px}.layout{padding:36px 0 56px}.hero{padding:52px 0 44px}
+h2{letter-spacing:-.035em}h1,h2{text-wrap:balance}p{text-wrap:pretty}
+.hero{background:linear-gradient(180deg,var(--bg),var(--alt));color:var(--ink);border-bottom:1px solid var(--line)}
+.hero .t2{color:var(--muted)}.hero p{color:var(--muted)}.chips li{border-color:var(--line);color:var(--muted);background:var(--bg)}
+.hero .btn.w{background:var(--btn);color:var(--btn-ink)}
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<header>
+ <div class="wrap nav">
+  <a class="brand" href="index.html" aria-label="VRIKSH home"><img class="logo" src="images/vriksh-logo.png" alt="" width="30" height="30">VRIKSH <span class="sub">&nbsp;Mobile App Manual</span></a>
+  <div class="row" style="gap:18px"><a href="index.html" style="font-size:.8rem;color:var(--muted);text-decoration:none">&#8249; VRIKSH site</a><button class="btn sm" type="button" data-dl>Download PDF</button></div>
+ </div>
+</header>
+
+<main>
+<section class="hero" id="top-hero">
+ <div class="wrap">
+  <h1>VRIKSH Mobile App</h1>
+  <p class="t2">User &amp; Operations Manual</p>
+  <p>EUDR traceability, geolocation, tree inventory, booking and lot management. A practical guide for field users and support teams.</p>
+  <ul class="chips"><li>Version 1.0</li><li>30 October 2026</li><li>Farmers &amp; non-farmers</li><li>Operations &amp; support teams</li></ul>
+  <div class="row"><button class="btn w" type="button" data-dl>Download PDF</button><a class="btn o" href="#s1">Read online</a></div>
+ </div>
+</section>
+
+<div class="wrap layout">
+ <aside aria-label="Contents"><b>Contents</b><ol id="toc"></ol></aside>
+ <div>
+ <details class="mtoc"><summary>Contents</summary><ol id="mtoc"></ol></details>
+ <article id="doc">
+  <div class="doc-head"><div class="dh-logos"><img class="v" src="images/vriksh-logo.png" alt="VRIKSH"><img class="epch" src="images/epch-logo.png" alt="EPCH"></div><h1>VRIKSH Mobile Application – User &amp; Operations Manual</h1><p>EUDR Traceability • Geolocation • Tree Inventory • Booking &amp; Lot Management<br>Version 1.0 | 30 October 2026</p></div>
+
+  <section id="s0"><h2>Document information</h2>
+   <p><b>Purpose.</b> A practical, step-by-step guide to the mobile app workflows documented in the supplied presentation.</p>
+   <p><b>Intended users.</b> Farmers, non-farmer supply-chain participants, timber traders and operational support teams.</p>
+   <p><b>Source basis.</b> VRIKSH-APP-GUIDE.pdf. App-specific details are kept where visible; missing technical or policy details are identified rather than assumed.</p>
+   <div class="box imp"><b>Important</b>This manual explains app use. It is not a legal opinion or a guarantee of EUDR compliance.</div>
+  </section>
+
+  <section id="s1"><h2>1. About this manual</h2>
+   <p>This manual explains the user-facing workflows shown in the supplied VRIKSH Mobile App presentation. It is for farmers, timber traders and other non-farmer participants, and for the operational teams supporting onboarding and traceability.</p>
+   <p>The presentation describes VRIKSH as a mobile solution for collecting geolocation information and supporting compliance processes associated with the European Union Deforestation Regulation (EUDR). This manual follows its features and sequence.</p>
+  </section>
+
+  <section id="s2"><h2>2. Purpose and objectives of the VRIKSH App</h2>
+   <p>The app connects participants in the tree and timber supply chain and supports traceability through location-based listings and transaction workflows. Key objectives:</p>
+   <ul><li>Connect farmers and buyers through a marketplace.</li><li>Support supply-chain tracking.</li><li>Collect and collate geolocation information.</li><li>Facilitate trade among farmers, saw millers, timber traders, manufacturers and merchants.</li></ul>
+   <p>A Web Admin Portal manages user profiles, approves batch codes and monitors transactions.</p>
+  </section>
+
+  <section id="s3"><h2>3. User categories and access</h2>
+   <ul><li><b>Farmer.</b> Farm creation, tree addition and tree inventory are farmer-only functions.</li>
+   <li><b>Non-Farmer.</b> A separate registration flow serves timber traders and other supply-chain participants.</li>
+   <li><b>Web administrator.</b> Oversees user profiles, batch-code approvals and transaction monitoring. Detailed administrator screens are not in the presentation.</li></ul>
+  </section>
+
+  <section id="s4"><h2>4. Registration and account creation</h2>
+   <h3>4.1 Farmer registration</h3>
+   <ol class="steps"><li>Open the app and choose the account creation / sign-up route.</li><li>Select the farmer registration path.</li><li>Enter the requested farmer and contact details.</li><li>Complete the email verification step: check the email account used and follow the app’s instructions.</li><li>Complete the remaining account fields and submit.</li><li>Return to the login screen and sign in with your registered credentials.</li></ol>
+   <h3>4.2 Non-Farmer registration</h3>
+   <ol class="steps" start="7"><li>Select Create Account for non-farmers / other users.</li><li>Complete the business or participant information, including contact and business details.</li><li>Upload the supporting business documents the screen requests, where applicable.</li><li>Complete the remaining account and password fields and submit.</li><li>Sign in once any verification or approval requirement shown by the app is complete.</li></ol>
+   <div class="box"><b>Important</b>The guide shows screenshots of the forms but gives no field-by-field list, document checklist, password policy or approval service standard. Follow the live form labels and instructions.</div>
+  </section>
+
+  <section id="s5"><h2>5. Login, home page and language</h2>
+   <ol class="steps" start="12"><li>Open the app and enter your registered login credentials.</li><li>Use the sign-in action to access the account.</li><li>The farmer home page links to the farm and tree-related functions.</li><li>A language control offers English and Hindi.</li><li>Review the home page and navigation before starting a new farm or tree record.</li></ol>
+   <div class="box"><b>Keep credentials private</b>Do not share passwords or verification codes. If login fails, recheck your email/username, password, network connection and any on-screen error.</div>
+  </section>
+
+  <section id="s6"><h2>6. Adding a farm (Farmer only)</h2>
+   <p>The Add New Farm workflow has a farm information form and a map-based location and boundary step.</p>
+   <ol class="steps" start="17"><li>Sign in with a farmer account.</li><li>Open My Farms and choose to add a new farm.</li><li>Enter the requested farm information. Check spelling before proceeding.</li><li>Use the map / geolocation interface to identify the farm location.</li><li>Mark the farm boundary by creating the polygon, following the actual boundary as closely as possible.</li><li>Review the mapped area and details. Correct misplaced boundary points before saving.</li><li>Save the farm record and check that it appears in My Farms.</li></ol>
+   <div class="box"><b>Good practice</b>Capture the boundary on or near the site; confirm location permission and device location services are on; avoid including neighbouring land, roads or unrelated plots. These are operational recommendations, not extra app features.</div>
+  </section>
+
+  <section id="s7"><h2>7. Adding trees (Farmer only)</h2>
+   <p>The Add Trees flow is farmer-only. The guide states that 44 tree species have been added to the app.</p>
+   <ol class="steps" start="24"><li>Open the relevant farm or the My Trees / Add Trees area.</li><li>Start the Add Tree process.</li><li>Select the tree species from the list (a catalogue of 44).</li><li>Enter the tree details the form requests.</li><li>Add the location or supporting information the app prompts for.</li><li>Review and save the tree record.</li><li>Repeat for additional trees or groups as needed.</li></ol>
+   <div class="box"><b>Choose species carefully</b>Do not guess when identification is uncertain; ask the field expert or operations team. The presentation does not list all 44 species or define every tree data field.</div>
+  </section>
+
+  <section id="s8"><h2>8. Tree inventory and batch records</h2>
+   <p>Tree Inventory is a farmer-only function. Records appear in a list with batch-related information and record actions.</p>
+   <ol class="steps" start="31"><li>Open My Trees / Tree Inventory from the farmer account.</li><li>Review the records and their farm or batch information.</li><li>Use any list or filter controls to find the record.</li><li>Open a record to review its details.</li><li>Use record actions only when required and authorised. Deletion has a confirmation step, so treat it as consequential.</li><li>Confirm that any permitted update is reflected in the inventory.</li></ol>
+   <p class="tip">Not defined in the presentation: batch-code format, approval rules, inventory export, audit history. Batch-code approval is a Web Admin Portal responsibility.</p>
+  </section>
+
+  <section id="s9"><h2>9. Booking workflow: farmer and timber trader</h2>
+   <p>The Booking section has separate Farmer and Timber Trader perspectives, supporting interaction between the two.</p>
+   <ol class="steps" start="37"><li>Sign in with the appropriate participant account.</li><li>Open the Booking area.</li><li>Review the booking details for the relevant party or transaction.</li><li>Enter the details requested. Confirm the farmer, trader, tree / lot information and quantities match the intended transaction.</li><li>Submit the booking or booking response.</li><li>Review the status or confirmation shown.</li></ol>
+   <div class="box"><b>Before submitting</b>Verify the parties, product / lot reference, quantity and displayed commercial or logistical details. Payment, contract terms, delivery scheduling and cancellation rules are not specified and should follow your business process.</div>
+  </section>
+
+  <section id="s10"><h2>10. Creating lots / grouping</h2>
+   <p>The Create Lots / Grouping workflow has screens for creating a group and viewing My Inventory.</p>
+   <ol class="steps" start="43"><li>Open the lot / group creation function from the inventory or workflow area.</li><li>Enter the group / lot information requested.</li><li>Select the eligible tree or inventory records to include.</li><li>Review the selected records and group details.</li><li>Save the lot or group.</li><li>Check the lot in the inventory or group listing and confirm the intended records are included.</li></ol>
+   <div class="box"><b>Do not combine unrelated or unverified records</b>Keep a clear link between each lot and its underlying farm and tree records. Lot eligibility rules, maximum size and identifier format are not defined.</div>
+  </section>
+
+  <section id="s11"><h2>11. Processing and booking request</h2>
+   <p>The final workflow, Processing &amp; Booking Request, moves between My Inventory and processing / booking views.</p>
+   <ol class="steps" start="49"><li>Open the relevant inventory or lot record.</li><li>Start the processing / booking request using the action on screen.</li><li>Complete the information requested in the form.</li><li>Confirm the request matches the correct inventory / lot and intended transaction.</li><li>Submit using the app’s submit / confirm action.</li><li>Return to the inventory or request view and check the status.</li></ol>
+   <p class="tip">Processing stages, status meanings, approval roles and service-level timelines are not defined. Rely on the live app’s status labels and your organisation’s approved procedure.</p>
+  </section>
+
+  <section id="s12"><h2>12. Documents and EUDR traceability</h2>
+   <p>Uploading legal and supply-chain documents is a key feature, alongside geolocation integration, polygon creation, batch tree ID creation and automated data conversion.</p>
+   <p>Upload correct, legible and current documents for the relevant user, farm, tree, lot or transaction, and check each belongs to the selected record.</p>
+   <p>Keep the chain consistent: participant identity, farm location, mapped boundary, tree / species record, inventory / batch, lot grouping and booking / processing request. A mismatch at one stage can weaken the traceability record.</p>
+   <div class="box"><b>Not legal advice</b>This manual does not interpret EUDR legal requirements or certify that using the app alone establishes compliance. Follow your organisation’s approved EUDR due-diligence procedure.</div>
+  </section>
+
+  <section id="s13"><h2>13. Web Admin Portal – overview</h2>
+   <p>The Web Admin Portal oversees platform operations: user-profile management, batch-code approval and transaction monitoring.</p>
+   <p>Administrators should perform only the functions assigned to their role and follow internal approval controls. Verify identity and supporting information before changing profiles or approving batch codes. Watch transactions for missing or inconsistent information and refer exceptions to the responsible owner.</p>
+   <p class="tip">Portal navigation, role permissions, audit logs, user suspension, approval criteria and reporting are not shown and should be documented in a separate administrator SOP.</p>
+  </section>
+
+  <section id="s14"><h2>14. Data quality, privacy and security practices</h2>
+   <ul><li>Enter accurate participant and contact information.</li><li>Capture the correct farm location and boundary; review the polygon before saving.</li><li>Choose the correct species and avoid unsupported assumptions.</li><li>Link tree records to the correct farm and lot.</li><li>Upload clear, relevant documents to the correct record.</li><li>Review booking and processing details before submission.</li><li>Keep login credentials confidential and use only authorised accounts.</li><li>Do not create duplicate records to work around an error; contact support or operations.</li><li>Report incorrect geolocation, duplicate or missing records and unexpected status changes promptly.</li></ul>
+   <p class="tip">These are recommended operational controls for reliable use of the workflows described in the source guide.</p>
+  </section>
+
+  <section id="s15"><h2>15. Basic troubleshooting</h2>
+   <div class="trouble">
+    <div><b>Unable to log in</b><span>Confirm the registered identifier and password, check your connection, and use the app’s password recovery or support route if shown.</span></div>
+    <div><b>Email verification not received</b><span>Check the registered address, spam / junk folder and network. Request another message only if the app offers it.</span></div>
+    <div><b>Map or location not working</b><span>Enable device location services and app permission, check connectivity and retry from the correct site. If the boundary is still inaccurate, do not submit an unreliable polygon.</span></div>
+    <div><b>Farm / tree record not visible</b><span>Refresh or reopen the list, confirm the correct account and farm are selected, and check for a submission or approval status.</span></div>
+    <div><b>Document upload fails</b><span>Confirm the file type and size follow the on-screen instructions, check connectivity and retry. Supported formats and size limits are not specified.</span></div>
+    <div><b>Booking / request status unclear</b><span>Open the record and review the status. If still unclear, share the record reference and a screenshot with support.</span></div>
+    <div><b>Escalation details to provide</b><span>User role, registered account identifier (never your password), affected farm / tree / lot / booking reference, date and time, device details, exact error message and screenshot.</span></div>
+   </div>
+  </section>
+
+  <section id="s16"><h2>16. Operational checklist</h2>
+   <ul class="check">
+    <li><b>Before field data entry:</b> confirm the correct farmer account, farm / site and device location settings.</li>
+    <li><b>Before saving a farm:</b> verify farm details, map position and polygon boundary.</li>
+    <li><b>Before saving a tree:</b> verify species, farm association and all required fields.</li>
+    <li><b>Before creating a lot:</b> verify the selected inventory records and their traceability links.</li>
+    <li><b>Before submitting a booking / request:</b> verify counterparties, lot / inventory reference, quantities and all displayed details.</li>
+    <li><b>After submission:</b> confirm the record appears in the relevant list and note any reference or status shown.</li>
+   </ul>
+  </section>
+
+  <section id="s17"><h2>17. Scope and limitations of this manual</h2>
+   <p>This manual is based on the supplied 15-page VRIKSH Mobile App presentation. It expands the pictured workflows into practical instructions but does not replace the live app, formal training, legal advice or an approved internal SOP.</p>
+   <p>Where the presentation does not specify field names, button labels, file formats, approval rules, status definitions or service timelines, this manual avoids inventing them. Screen layouts and functions may change as the app is updated. Screenshots from the source presentation are in the original PDF.</p>
+  </section>
+
+  <section id="appA"><h2>Appendix A – Feature summary</h2>
+   <table><thead><tr><th>Feature shown in source guide</th><th>Where it fits in the workflow</th></tr></thead><tbody>
+    <tr><td>Tree listing &amp; searching</td><td>Discover and review tree listings</td></tr>
+    <tr><td>Profile management</td><td>User account and profile administration</td></tr>
+    <tr><td>Geolocation &amp; polygon creation</td><td>Farm location and boundary capture</td></tr>
+    <tr><td>Multi-lingual interface</td><td>Language selection on the home screen</td></tr>
+    <tr><td>Automated data conversion</td><td>Data handling feature identified in the presentation</td></tr>
+    <tr><td>Batch Tree ID creation</td><td>Tree / batch identification</td></tr>
+    <tr><td>Legal &amp; supply-chain document upload</td><td>Supporting evidence linked to traceability</td></tr>
+    <tr><td>Innovative dashboard</td><td>At-a-glance app information</td></tr>
+    <tr><td>Resource mapping</td><td>Location / resource-related information</td></tr>
+   </tbody></table>
+  </section>
+
+  <section id="appB"><h2>Appendix B – Source and interpretation note</h2>
+   <p>Workflow names, user categories and feature descriptions are based on the supplied VRIKSH presentation. Step-by-step explanations and quality checks are operational elaborations to make the screens easier to use. Confirm current labels and process rules in the live app and with the designated VRIKSH administrator.</p>
+  </section>
+ </article>
+ </div>
+</div>
+</main>
+<footer><div class="wrap fl"><img class="epch" src="images/epch-logo.png" alt="EPCH"><div><a href="index.html">Back to the VRIKSH site</a>. © 2013 VRIKSH. All rights reserved. An initiative of EPCH. Original document: <a href="https://vrikshindia.in/external_file/VRIKSH_Mobile_App_User_Operations_Manual.pdf">VRIKSH Mobile App User &amp; Operations Manual (PDF)</a></div></div></footer>
+<button class="top" id="top" aria-label="Back to top">&#8593;</button>
+
+<script>
+(function(){
+var d=document,doc=d.getElementById('doc');
+// contents from headings
+var heads=[].slice.call(doc.querySelectorAll('section[id] > h2')),t=d.getElementById('toc'),m=d.getElementById('mtoc');
+heads.forEach(function(h){var id=h.parentNode.id,txt=h.textContent;
+ var li=d.createElement('li'),a=d.createElement('a');a.href='#'+id;a.textContent=txt;li.appendChild(a);t.appendChild(li);
+ var l2=d.createElement('li'),a2=d.createElement('a');a2.href='#'+id;a2.textContent=txt;l2.appendChild(a2);m.appendChild(l2)});
+var links=[].slice.call(t.querySelectorAll('a')),bar=d.getElementById('bar'),top=d.getElementById('top');
+function onScroll(){var h=d.documentElement,y=h.scrollTop,mx=h.scrollHeight-h.clientHeight;bar.style.width=(mx>0?y/mx*100:0)+'%';top.classList.toggle('show',y>700);
+ var cur=-1;heads.forEach(function(x,i){if(x.getBoundingClientRect().top<150)cur=i});links.forEach(function(a,i){a.classList.toggle('on',i===cur)})}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+top.addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'})});
+m.addEventListener('click',function(e){if(e.target.tagName==='A')d.querySelector('.mtoc').open=false});
+// PDF download
+var FILE='VRIKSH-Mobile-App-User-Operations-Manual.pdf',btns=[].slice.call(d.querySelectorAll('[data-dl]'));
+function busy(b){btns.forEach(function(x){x.disabled=b;if(x.classList.contains('sm'))x.textContent=b?'Preparing…':'Download PDF'});}
+function printFallback(){doc.classList.remove('pdfmode');window.print()}
+btns.forEach(function(b){b.addEventListener('click',async function(){
+ var dl=null;try{dl=window.claude&&await claude.use('downloads')}catch(e){}
+ if(!window.html2pdf){printFallback();return}
+ busy(true);doc.classList.add('pdfmode');
+ try{
+  await new Promise(function(r){setTimeout(r,60)});
+  var job=html2pdf().set({margin:[14,12,16,12],filename:FILE,image:{type:'jpeg',quality:.95},html2canvas:{scale:2,useCORS:true,backgroundColor:'#ffffff',scrollY:0},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['css','legacy'],avoid:['h2','h3','.box','li','tr','.trouble div']}}).from(doc);
+  if(dl){var blob=await job.outputPdf('blob');doc.classList.remove('pdfmode');await dl.save({filename:FILE,data:blob})}
+  else{await job.save()}
+ }catch(e){doc.classList.remove('pdfmode');if(!e||e.code!=='declined')printFallback()}
+ finally{doc.classList.remove('pdfmode');busy(false)}
+})});
+})();
+</script>
+</body>
+</html>
