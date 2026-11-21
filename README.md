@@ -2,7 +2,7 @@
 
 Proof-of-concept redesign of [vrikshindia.in](https://vrikshindia.in), the timber legality verification standard of the Export Promotion Council for Handicrafts (EPCH). This repository is the design reference and starting point for the production build.
 
-**Live preview:** `[https://<github-username>.github.io/<repository-name>/](https://mks4576.github.io/vriksh-website/)` (see "Publish on GitHub Pages" below)
+**Live preview:** `https://<github-username>.github.io/<repository-name>/` (see "Publish on GitHub Pages" below)
 
 > Status: POC. The certificate search uses 4 fake demo records. No database or backend is connected yet.
 
@@ -13,6 +13,7 @@ Proof-of-concept redesign of [vrikshindia.in](https://vrikshindia.in), the timbe
 ```
 index.html          Main single-page site (hero, search, about, certification, shipment, governance, notifications)
 app-manual.html     VRIKSH Mobile App User & Operations Manual, with "Download PDF"
+contact.html        Contact page with enquiry form (see note below)
 images/             VRIKSH and EPCH logos, five hero photos (hero-1.jpg to hero-5.jpg)
 .nojekyll           Tells GitHub Pages to serve the files as they are
 .gitignore          Ignores system and secret files
@@ -94,6 +95,10 @@ flowchart LR
 - SEO: all old URLs redirect (301); sitemap and metadata in place.
 - Monitoring: uptime alerts and analytics (GA4 or equivalent).
 - Handover: full source code, infrastructure documentation, AWS access, and a support period (30 to 90 days) with a fix SLA.
+
+### Contact form
+
+`contact.html` has a working form but no backend yet. In the page script, `CONFIG.endpoint` is empty, so the form opens the visitor's email app addressed to `CONFIG.to`. The agency sets `CONFIG.endpoint` to the new API route (JSON POST with name, org, email, phone, topic, message) and adds server-side validation, spam protection (CAPTCHA) and email delivery. Verify the address, phone numbers and email shown on the page against the official VRIKSH contact page before go-live.
 
 ### Open items from the POC
 

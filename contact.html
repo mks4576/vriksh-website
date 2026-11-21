@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="images/vriksh-logo.png">
+<title>Contact us – VRIKSH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--alt:#f5f5f7;--ink:#1d1d1f;--muted:#6e6e73;--line:#d2d2d7;--nav:rgba(255,255,255,.78);--btn:#000;--btn-ink:#fff;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000;--alt:#161617;--ink:#f5f5f7;--muted:#a1a1a6;--line:#3a3a3c;--nav:rgba(0,0,0,.72);--btn:#f5f5f7;--btn-ink:#000;color-scheme:dark}}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.47 -apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Inter","Helvetica Neue",Arial,sans-serif;letter-spacing:-.011em;-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0 0 .4em;font-weight:700;letter-spacing:-.03em;line-height:1.08;text-wrap:balance}
+h3{font-size:1.15rem;letter-spacing:-.02em}p{margin:0 0 1em;text-wrap:pretty}a{color:inherit}
+:focus-visible{outline:3px solid #0071e3;outline-offset:3px;border-radius:8px}
+.wrap{width:min(1080px,90%);margin-inline:auto}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);z-index:60}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:52px;gap:16px}
+.brand{font-weight:700;font-size:1.1rem;letter-spacing:.02em;text-decoration:none;display:flex;gap:9px;align-items:center}
+.brand img{width:30px;height:30px;border-radius:8px;padding:2px;background:#fff;display:block}
+nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+nav a{text-decoration:none;font-size:.8rem;color:var(--muted);transition:color .2s}nav a:hover,nav a[aria-current]{color:var(--ink)}
+.menu-btn{display:none;background:none;border:0;color:var(--ink);font:inherit;font-size:.9rem;cursor:pointer;padding:8px}
+.btn{display:inline-block;padding:12px 24px;border-radius:980px;font-weight:500;font-size:1rem;font-family:inherit;text-decoration:none;border:1px solid transparent;transition:transform .2s,opacity .2s,background .2s,color .2s;cursor:pointer;background:var(--btn);color:var(--btn-ink)}
+.btn:hover{opacity:.82}.btn:active{transform:scale(.97)}.btn[disabled]{opacity:.5;cursor:wait}.btn.sm{padding:6px 14px;font-size:.8rem}
+.btn.o{background:transparent;color:inherit;border-color:currentColor}.btn.o:hover{opacity:1;background:var(--ink);color:var(--bg)}
+.link{text-decoration:none;font-weight:500}.link::after{content:" \203A"}
+.row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.chero{background:linear-gradient(180deg,var(--bg),var(--alt));border-bottom:1px solid var(--line);text-align:center;padding:48px 0 40px}
+.tag3{display:inline-flex;gap:9px;align-items:center;font-size:.85rem;font-weight:500;color:var(--muted);margin-bottom:14px}
+.tag3 img{width:22px;height:22px;border-radius:6px;background:#fff;padding:1px;border:1px solid var(--line);display:block}
+.chero h1{font-size:clamp(2.2rem,6vw,4rem);letter-spacing:-.045em;margin:0 0 .25em}
+.chero p{color:var(--muted);font-size:clamp(1rem,1.7vw,1.2rem);max-width:56ch;margin:0 auto}
+.main{display:grid;grid-template-columns:.85fr 1.15fr;gap:32px;align-items:start;padding:44px 0 56px}
+.info{display:grid;gap:14px}
+.tile{background:var(--alt);border-radius:22px;padding:22px 24px}
+.tile small{display:block;font-size:.8rem;font-weight:600;color:var(--muted);margin-bottom:4px}
+.tile b{display:block;font-size:1.1rem;letter-spacing:-.02em;margin-bottom:2px;word-break:break-word}
+.tile p{margin:0;color:var(--muted);font-size:.93rem}
+.tile .link{display:inline-block;margin-top:8px;font-size:.93rem}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:26px;padding:28px;box-shadow:0 30px 60px -40px rgba(0,0,0,.4)}
+.card h2{font-size:1.6rem;margin-bottom:.2em}.card>p{color:var(--muted);font-size:.95rem;margin-bottom:20px}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:14px}
+input:not([type=checkbox]),select,textarea{display:block;width:100%;margin-top:6px;padding:13px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;font-size:1rem;background:var(--bg);color:var(--ink);transition:box-shadow .2s,border-color .2s}
+textarea{resize:vertical;min-height:130px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#0071e3;box-shadow:0 0 0 4px rgba(0,113,227,.22)}
+.invalid{border-color:#d70015!important}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+.ck{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;margin:2px 0 18px}.ck input{margin-top:3px;width:18px;height:18px;flex:none;accent-color:var(--ink)}
+#st{margin:14px 0 0;font-size:.93rem;min-height:1.4em}#st.ok{color:var(--ink);font-weight:600}#st.err{color:#d70015}
+.quick{padding:0 0 56px}.quick h2{font-size:1.3rem;margin-bottom:14px}
+.qg{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.tile a:hover{text-decoration:underline!important}
+.qbtn{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 18px;border-radius:16px;background:var(--bg);border:1px solid var(--line);text-decoration:none;font-weight:600;font-size:.97rem;transition:transform .25s,box-shadow .25s,border-color .25s}
+.qbtn:hover{transform:translateY(-2px);border-color:var(--ink);box-shadow:0 10px 24px -12px rgba(0,0,0,.35)}.qbtn span{color:var(--muted);font-size:1.3rem;line-height:1}
+footer{border-top:1px solid var(--line);padding:28px 0 36px;font-size:.78rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+.fl{display:flex;gap:16px;align-items:center}.epch{height:58px;width:auto;background:#fff;border-radius:10px;padding:6px 10px;display:block}
+footer a{text-decoration:none;margin-left:20px}footer a:hover{text-decoration:underline}
+@media (max-width:900px){.main{grid-template-columns:1fr;padding:32px 0 40px}.qg{grid-template-columns:repeat(2,1fr)}
+nav ul{position:absolute;top:52px;left:0;right:0;background:var(--bg);flex-direction:column;gap:0;padding:8px 5%;display:none;border-bottom:1px solid var(--line)}
+nav ul.open{display:flex}nav li a{display:block;padding:14px 0;font-size:1rem;color:var(--ink);border-bottom:1px solid var(--line)}.menu-btn{display:block}}
+@media (max-width:560px){.fg{grid-template-columns:1fr}.qg{grid-template-columns:1fr}.card{padding:22px}.nav .btn.sm{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap nav">
+  <a class="brand" href="index.html" aria-label="VRIKSH home"><img src="images/vriksh-logo.png" alt="" width="30" height="30">VRIKSH</a>
+  <nav aria-label="Main"><ul id="menu">
+   <li><a href="index.html#about">About</a></li><li><a href="index.html#certify">Get certified</a></li><li><a href="index.html#shipment">Shipment</a></li>
+   <li><a href="index.html#governance">Governance</a></li><li><a href="index.html#notifications">Notifications</a></li><li><a href="app-manual.html">App manual</a></li><li><a href="contact.html" aria-current="page">Contact</a></li>
+  </ul></nav>
+  <a class="btn sm" href="index.html#certify">Apply</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+ </div>
+</header>
+
+<main>
+<section class="chero">
+ <div class="wrap">
+  <span class="tag3"><img src="images/vriksh-logo.png" alt="" width="22" height="22">VRIKSH, an initiative of EPCH</span>
+  <h1>Contact us</h1>
+  <p>Questions about certification, shipment certificates or the VRIKSH app? Write to the VRIKSH team and we will get back to you.</p>
+ </div>
+</section>
+
+<div class="wrap main">
+ <div class="info">
+  <div class="tile"><small>Export Promotion Council for Handicrafts</small><b>EPCH House, Pocket 6 &amp; 7, Sector C, L.S.C., Vasant Kunj, New Delhi 110070</b><p><a href="tel:+911126135256" style="text-decoration:none">Tel +91 11 2613 5256 / 57 / 58 (ext. 125)</a><br>Fax +91 11 2613 5518 / 19<br><a href="mailto:vriksh@epch.com" style="text-decoration:none">vriksh@epch.com</a></p><a class="link" href="https://www.google.com/maps/search/?api=1&query=EPCH+House+Vasant+Kunj+New+Delhi" target="_blank" rel="noopener">Open in Maps</a></div>
+  <div class="tile"><small>Audit agency</small><b>GICIA India Pvt. Ltd.</b><p>C-1501, 15th Floor, Tower C, ATS Bouquet, Sector 132, Noida, Uttar Pradesh 201304<br>Ms. Riya Ranga<br><a href="tel:+911205107042" style="text-decoration:none">Tel +91 120 5107042</a> &middot; <a href="tel:+917290068705" style="text-decoration:none">Mob +91 72900 68705</a><br><a href="mailto:info@gicia.org" style="text-decoration:none">info@gicia.org</a></p></div>
+ </div>
+
+ <div class="card">
+  <h2>Send a message</h2>
+  <p>Fields marked * are required.</p>
+  <form id="cf" novalidate>
+   <div class="fg"><label>Full name *<input name="name" required autocomplete="name"></label><label>Organization<input name="org" autocomplete="organization"></label></div>
+   <div class="fg"><label>Email *<input type="email" name="email" required autocomplete="email"></label><label>Phone<input type="tel" name="phone" autocomplete="tel"></label></div>
+   <label>Topic<select name="topic"><option>Certification application</option><option>Shipment certificate</option><option>Verify a certificate</option><option>Mobile app support</option><option>Media and press</option><option>Other</option></select></label>
+   <label>Message *<textarea name="msg" required></textarea></label>
+   <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+   <label class="ck"><input type="checkbox" name="consent" required><span>I agree that EPCH may use these details to respond to my enquiry. *</span></label>
+   <button class="btn" type="submit">Send message</button>
+   <p id="st" role="status"></p>
+  </form>
+ </div>
+</div>
+
+<section class="quick">
+ <div class="wrap">
+  <h2>Forms and resources</h2>
+  <div class="qg">
+   <a class="qbtn" href="https://vrikshindia.in/external_file/ApplicationForm_V11.pdf" target="_blank" rel="noopener">Application form for members<span>&#8250;</span></a>
+   <a class="qbtn" href="https://vrikshindia.in/external_file/associatesapplicationform.pdf" target="_blank" rel="noopener">Application form for associates<span>&#8250;</span></a>
+   <a class="qbtn" href="https://vrikshindia.in/index.php/user/certifi_user" target="_blank" rel="noopener">Certificate holders<span>&#8250;</span></a>
+   <a class="qbtn" href="https://vrikshindia.in/index.php/user/operator" target="_blank" rel="noopener">Operator laws<span>&#8250;</span></a>
+   <a class="qbtn" href="https://vrikshindia.in/index.php/user/standerd" target="_blank" rel="noopener">Standard process<span>&#8250;</span></a>
+   <a class="qbtn" href="app-manual.html">App manual<span>&#8250;</span></a>
+   <a class="qbtn" href="https://vrikshindia.in/external_file/FAQs-for-Mobile-Apps.pdf" target="_blank" rel="noopener">App FAQs<span>&#8250;</span></a>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div class="fl"><a href="https://www.epch.in" target="_blank" rel="noopener" style="margin:0"><img class="epch" src="images/epch-logo.png" alt="Export Promotion Council for Handicrafts (EPCH)"></a><span>© 2013 VRIKSH. All rights reserved.<br>An initiative of the Export Promotion Council for Handicrafts.</span></div>
+  <div><a href="https://vrikshindia.in/index.php/user/policy">Privacy Policy</a><a href="app-manual.html">App manual</a><a href="contact.html">Contact</a></div>
+ </div>
+</footer>
+
+<script>
+(function(){
+/* Agency: set endpoint to the API route that receives the form (for example /api/contact).
+   While endpoint is empty, the form opens the visitor's email app addressed to "to". */
+var CONFIG={to:'vriksh@epch.com',endpoint:''};
+var d=document,menu=d.getElementById('menu'),btn=d.querySelector('.menu-btn');
+btn.addEventListener('click',function(){var o=menu.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
+var f=d.getElementById('cf'),st=d.getElementById('st'),go=f.querySelector('button[type=submit]');
+function say(t,c){st.textContent=t;st.className=c||''}
+f.addEventListener('submit',function(e){e.preventDefault();
+ var v={};['name','org','email','phone','topic','msg','website'].forEach(function(k){v[k]=f.elements[k].value.trim()});
+ var bad=[];['name','email','msg'].forEach(function(k){var ok=v[k]&&(k!=='email'||/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v[k]));f.elements[k].classList.toggle('invalid',!ok);if(!ok)bad.push(k)});
+ if(!f.elements.consent.checked)bad.push('consent');
+ if(bad.length){say('Please complete the required fields and tick the consent box.','err');var first=f.elements[bad[0]];if(first)first.focus();return}
+ if(v.website){say('Thank you. Your message has been sent.','ok');f.reset();return}
+ if(CONFIG.endpoint){go.disabled=true;say('Sending…');
+  fetch(CONFIG.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:v.name,org:v.org,email:v.email,phone:v.phone,topic:v.topic,message:v.msg})})
+  .then(function(r){if(!r.ok)throw 0;say('Thank you. Your message has been sent.','ok');f.reset()})
+  .catch(function(){say('Sorry, the message could not be sent. Please email '+CONFIG.to+'.','err')})
+  .then(function(){go.disabled=false});return}
+ var body='Name: '+v.name+'\nOrganization: '+v.org+'\nEmail: '+v.email+'\nPhone: '+v.phone+'\n\n'+v.msg;
+ location.href='mailto:'+CONFIG.to+'?subject='+encodeURIComponent('VRIKSH enquiry: '+v.topic)+'&body='+encodeURIComponent(body);
+ say('Your email app should open with the message ready. If nothing opens, write to '+CONFIG.to+'.','ok')});
+f.addEventListener('input',function(e){e.target.classList.remove('invalid')});
+})();
+</script>
+</body>
+</html>
