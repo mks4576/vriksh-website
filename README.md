@@ -2,7 +2,7 @@
 
 Proof-of-concept redesign of [vrikshindia.in](https://vrikshindia.in), the timber legality verification standard of the Export Promotion Council for Handicrafts (EPCH). This repository is the design reference and starting point for the production build.
 
-**Live preview:** `https://<github-username>.github.io/<repository-name>/` (see "Publish on GitHub Pages" below)
+**Live preview:** `[https://<github-username>.github.io/<repository-name>/](https://mks4576.github.io/vriksh-website/)` (see "Publish on GitHub Pages" below)
 
 > Status: POC. The certificate search uses 4 fake demo records. No database or backend is connected yet.
 
